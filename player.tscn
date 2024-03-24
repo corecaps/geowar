@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxl4r8uh73d6a"]
+[gd_scene load_steps=6 format=3 uid="uid://dxl4r8uh73d6a"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_3ur25"]
 [ext_resource type="PackedScene" uid="uid://cseavsi1ktnmx" path="res://bullet.tscn" id="2_5tkrb"]
 [ext_resource type="Texture2D" uid="uid://dbeyd5cbe4hia" path="res://assets/player/player_ani_base.png" id="2_ptseo"]
+[ext_resource type="PackedScene" uid="uid://jafh8xpq0abq" path="res://ghost_player.tscn" id="3_lm1ri"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_w6sve"]
 points = PackedVector2Array(0, -20, -18, 16, 20, 16)
@@ -10,6 +11,7 @@ points = PackedVector2Array(0, -20, -18, 16, 20, 16)
 [node name="Player" type="Area2D"]
 script = ExtResource("1_3ur25")
 bullet_scene = ExtResource("2_5tkrb")
+ghost_scene = ExtResource("3_lm1ri")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 0)
@@ -23,5 +25,8 @@ shape = SubResource("ConvexPolygonShape2D_w6sve")
 autostart = true
 
 [node name="DashTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
 
 [connection signal="timeout" from="bulletCoolDown" to="." method="_on_bullet_cool_down_timeout"]
