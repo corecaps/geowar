@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxl4r8uh73d6a"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_3ur25"]
+[ext_resource type="PackedScene" uid="uid://cseavsi1ktnmx" path="res://bullet.tscn" id="2_5tkrb"]
+[ext_resource type="Texture2D" uid="uid://dbeyd5cbe4hia" path="res://assets/player/player_ani_base.png" id="2_ptseo"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_w6sve"]
+points = PackedVector2Array(0, -20, -18, 16, 20, 16)
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_3ur25")
+bullet_scene = ExtResource("2_5tkrb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("2_ptseo")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_w6sve")
+
+[node name="bulletCoolDown" type="Timer" parent="."]
+autostart = true
+
+[node name="DashTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="bulletCoolDown" to="." method="_on_bullet_cool_down_timeout"]
