@@ -1,8 +1,113 @@
-[gd_scene load_steps=3 format=3 uid="uid://dovilpk71w3fh"]
+[gd_scene load_steps=9 format=3 uid="uid://dovilpk71w3fh"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ea5bb"]
 [ext_resource type="PackedScene" uid="uid://dxl4r8uh73d6a" path="res://player.tscn" id="2_n2hqb"]
+[ext_resource type="FontFile" uid="uid://du7xqpsac5td7" path="res://assets/VeraMono-Bold.ttf" id="3_ciyxf"]
+[ext_resource type="Texture2D" uid="uid://qttawoj0y46l" path="res://assets/tileset02.png" id="4_qigc0"]
+[ext_resource type="Script" path="res://TileMap.gd" id="5_w0rc6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d2rtt"]
+font = ExtResource("3_ciyxf")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s4yyc"]
+texture = ExtResource("4_qigc0")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ymx6g"]
+sources/0 = SubResource("TileSetAtlasSource_s4yyc")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ea5bb")
 PlayerScene = ExtResource("2_n2hqb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hudPositionLabel" type="Label" parent="CanvasLayer"]
+offset_right = 198.0
+offset_bottom = 113.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_ciyxf")
+theme_override_font_sizes/font_size = 128
+text = "test"
+label_settings = SubResource("LabelSettings_d2rtt")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 708.0
+offset_top = 4.0
+offset_right = 792.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("3_ciyxf")
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+metadata/_edit_use_anchors_ = true
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ymx6g")
+format = 2
+script = ExtResource("5_w0rc6")
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
