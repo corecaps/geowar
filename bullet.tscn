@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cseavsi1ktnmx"]
+[gd_scene load_steps=6 format=3 uid="uid://cseavsi1ktnmx"]
 
 [ext_resource type="Texture2D" uid="uid://dmwyhk8xugdua" path="res://assets/bullets/bulletBase.png" id="1_4gmry"]
 [ext_resource type="Script" path="res://bullet.gd" id="1_dfiw0"]
@@ -6,11 +6,23 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h30er"]
 size = Vector2(16, 16)
 
+[sub_resource type="Gradient" id="Gradient_xxy6x"]
+offsets = PackedFloat32Array(0, 0.407407)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_43bi4"]
+gradient = SubResource("Gradient_xxy6x")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="bullet" type="Area2D"]
+collision_layer = 16
+collision_mask = 4
 script = ExtResource("1_dfiw0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+modulate = Color(3, 1, 1, 1)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_4gmry")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,4 +30,12 @@ shape = SubResource("RectangleShape2D_h30er")
 
 [node name="keepAliveTimer" type="Timer" parent="."]
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.4, 0.4)
+color = Color(1, 0, 0, 1)
+energy = 2.53
+texture = SubResource("GradientTexture2D_43bi4")
+texture_scale = 2.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="keepAliveTimer" to="." method="_on_keep_alive_timer_timeout"]
