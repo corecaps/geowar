@@ -1,113 +1,215 @@
-[gd_scene load_steps=9 format=3 uid="uid://dovilpk71w3fh"]
+[gd_scene load_steps=19 format=3 uid="uid://dovilpk71w3fh"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ea5bb"]
 [ext_resource type="PackedScene" uid="uid://dxl4r8uh73d6a" path="res://player.tscn" id="2_n2hqb"]
+[ext_resource type="PackedScene" uid="uid://dpde1isc8edvo" path="res://nmi_penta.tscn" id="3_12vxh"]
 [ext_resource type="FontFile" uid="uid://du7xqpsac5td7" path="res://assets/VeraMono-Bold.ttf" id="3_ciyxf"]
-[ext_resource type="Texture2D" uid="uid://qttawoj0y46l" path="res://assets/tileset02.png" id="4_qigc0"]
-[ext_resource type="Script" path="res://TileMap.gd" id="5_w0rc6"]
+[ext_resource type="PackedScene" uid="uid://dk15jqw8duep1" path="res://nmi_hexa_01.tscn" id="3_nbv66"]
+[ext_resource type="PackedScene" uid="uid://duubsvvkkednq" path="res://nmi_spiral.tscn" id="4_7esu8"]
+[ext_resource type="Texture2D" uid="uid://c8derr2jk7gxo" path="res://assets/Backgrounds/Blue1.png" id="5_6abao"]
+[ext_resource type="Texture2D" uid="uid://djyitrfa55lne" path="res://assets/UI/progress-bg.png" id="5_w88il"]
+[ext_resource type="PackedScene" uid="uid://bink2mmb7r2bh" path="res://p_up.tscn" id="6_84gcn"]
+[ext_resource type="Texture2D" uid="uid://deb5niufh5jhr" path="res://assets/UI/progress-fg.aseprite.png" id="6_hir0v"]
+[ext_resource type="Texture2D" uid="uid://bxeshrybqo4q" path="res://assets/Backgrounds/YellowStars.png" id="6_ogjck"]
+[ext_resource type="Texture2D" uid="uid://bp56i6p24s0m7" path="res://assets/Backgrounds/BlueStars.png" id="7_mdjxk"]
+[ext_resource type="FontFile" uid="uid://b2r5x8us24156" path="res://assets/HalloweenSlimePersonalUse-4B80D.otf" id="9_pwiv1"]
+[ext_resource type="Script" path="res://SpawnMain.gd" id="11_3qcom"]
+[ext_resource type="AudioStream" uid="uid://djfeflyxv6mf5" path="res://assets/battle.wav" id="15_6j8i4"]
+[ext_resource type="AudioStream" uid="uid://bxvax3e5nf24n" path="res://assets/menu.wav" id="16_h4i7d"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_d2rtt"]
-font = ExtResource("3_ciyxf")
+[sub_resource type="Environment" id="Environment_exp2q"]
+background_mode = 3
+ambient_light_color = Color(0, 0.00392157, 0.0117647, 1)
+ambient_light_energy = 1.24
+glow_enabled = true
+glow_levels/1 = 4.5
+glow_levels/2 = 4.0
+glow_levels/3 = 3.6
+glow_levels/4 = 3.0
+glow_levels/5 = 2.5
+glow_levels/6 = 2.0
+glow_levels/7 = 1.5
+glow_normalized = true
+glow_intensity = 4.8
+glow_strength = 2.0
+glow_bloom = 0.1
+glow_hdr_scale = 1.0
+glow_hdr_luminance_cap = 84.32
+glow_map_strength = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s4yyc"]
-texture = ExtResource("4_qigc0")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_ymx6g"]
-sources/0 = SubResource("TileSetAtlasSource_s4yyc")
+[sub_resource type="LabelSettings" id="LabelSettings_vgjqw"]
+font = ExtResource("9_pwiv1")
+font_size = 64
+font_color = Color(0, 0.792157, 0, 1)
+outline_size = 4
+outline_color = Color(0, 1, 0, 1)
+shadow_size = 6
+shadow_offset = Vector2(2, 2)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ea5bb")
 PlayerScene = ExtResource("2_n2hqb")
+PentasScene = ExtResource("3_12vxh")
+SpiralScene = ExtResource("4_7esu8")
+nmiscene = ExtResource("3_nbv66")
+pupscene = ExtResource("6_84gcn")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.25098, 0.25098, 0.25098, 1)
+z_index = -1023
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(960, 540)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+z_index = -1023
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_6abao")
+stretch_mode = 1
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.25098, 0.25098, 0.25098, 1)
+z_index = -1023
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(960, 540)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+z_index = -1023
+offset_right = 960.0
+offset_bottom = 551.0
+texture = ExtResource("6_ogjck")
+stretch_mode = 1
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.47451, 0.47451, 0.47451, 1)
+motion_mirroring = Vector2(960, 540)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_mdjxk")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+blend_mode = 1
+range_z_min = -1020
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_exp2q")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="hudPositionLabel" type="Label" parent="CanvasLayer"]
-offset_right = 198.0
-offset_bottom = 113.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_ciyxf")
-theme_override_font_sizes/font_size = 128
-text = "test"
-label_settings = SubResource("LabelSettings_d2rtt")
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 708.0
-offset_top = 4.0
-offset_right = 792.0
-offset_bottom = 50.0
-theme_override_fonts/font = ExtResource("3_ciyxf")
-theme_override_font_sizes/font_size = 32
-text = "Quit"
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+
+[node name="TITLE" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_pwiv1")
+theme_override_font_sizes/font_size = 100
+text = "GEOWAR"
+horizontal_alignment = 1
+
+[node name="HELP" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_pwiv1")
+theme_override_font_sizes/font_size = 50
+text = "PRESS START"
+horizontal_alignment = 1
+
+[node name="start" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_pwiv1")
+theme_override_font_sizes/font_size = 50
+text = "START"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
 metadata/_edit_use_anchors_ = true
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_ymx6g")
-format = 2
-script = ExtResource("5_w0rc6")
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[node name="Score" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_pwiv1")
+theme_override_font_sizes/font_size = 40
+
+[node name="ShieldBar" type="TextureProgressBar" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(350, 16)
+layout_mode = 2
+value = 100.0
+rounded = true
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("5_w88il")
+texture_progress = ExtResource("6_hir0v")
+texture_progress_offset = Vector2(2, 0)
+
+[node name="Quit" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(2, 2, 2, 1)
+theme_override_fonts/font = ExtResource("9_pwiv1")
+theme_override_font_sizes/font_size = 43
+text = "QUIT"
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WeaponUpgraded" type="Label" parent="CanvasLayer/CenterContainer2"]
+visible = false
+modulate = Color(4, 4, 4, 1)
+light_mask = 2
+visibility_layer = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ciyxf")
+theme_override_font_sizes/font_size = 30
+text = "WEAPON UPGRADED !!!"
+label_settings = SubResource("LabelSettings_vgjqw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NMISpawnTimer" type="Timer" parent="."]
+
+[node name="SpawnMain" type="Node2D" parent="."]
+script = ExtResource("11_3qcom")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_6j8i4")
+volume_db = -32.0
+
+[node name="menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_h4i7d")
+volume_db = -18.282
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Quit" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="NMISpawnTimer" to="." method="_on_nmi_spawn_timer_timeout"]
