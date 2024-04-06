@@ -67,6 +67,7 @@ func game_over():
 	$CanvasLayer/CenterContainer/VBoxContainer/start.show()
 	$music.stop()
 	$menu.play()
+
 func _process(_delta):
 	if (!playing):
 		return
@@ -88,6 +89,7 @@ func _on_button_pressed():
 
 func getPlayerPos():
 	return Player.position
+
 func spawn_pup():
 	if (!playing):
 		return
@@ -176,7 +178,6 @@ func display_upgrade_message(duration,msg):
 func hideUpgrade():
 	$CanvasLayer/CenterContainer2.hide()
 	$CanvasLayer/CenterContainer2/WeaponUpgraded.hide()
-
 
 func _on_player_shield_changed(maxvalue,current) :
 	$CanvasLayer/MarginContainer/HBoxContainer/ShieldBar.max_value = maxvalue
