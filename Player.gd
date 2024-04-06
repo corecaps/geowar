@@ -1,10 +1,15 @@
 extends Area2D
+signal shield_changed
 # external scenes
 @export var bullet_scene : PackedScene
 @export var ghost_scene : PackedScene
+@export var max_shield = 100
+var n_bullets = 1
+var shield = max_shield:
+	set = set_shield
 # movement params 
-@export var playerSpeed = 200
-@export var playerRotSpeed = 270
+@export var playerSpeed = 250
+@export var playerRotSpeed = 300
 # dash mechanism 
 @export var dashSpeed = 1000
 var isDashing = false
@@ -15,14 +20,24 @@ var timeSinceLastDash = 0.0
 var draw_ghost = 0
 # shoot mechanism 
 var canShoot = true
-var shootCoolDown = 0.05
-
+var shootCoolDown = 0.2
+func set_shield(value):
+	if (value < shield):
+		$Camera2D.declencher_tremblement(0.2,10)
+		$sndImpact.play()
+	shield = min(max_shield,value)
+	shield_changed.emit(max_shield,shield)
+	if (shield <= 0):
+		$Camera2D.declencher_tremblement(2.0,30)
+		hide()
 func _ready():
 	set_process(true)
+	add_to_group("player")
 
 func start(pos):
 	position = pos
 	$bulletCoolDown.wait_time = shootCoolDown
+
 
 func _process(delta):
 	$Sprite2D.frame = ($Sprite2D.frame + 1) % 5
@@ -50,12 +65,15 @@ func _process(delta):
 	rotation += deg_to_rad(rot * delta)
 
 func create_ghost():
-	var g = ghost_scene.instantiate()
-	g.position = self.position
-	g.rotation = self.rotation
-	get_tree().root.add_child(g)
+	if (isDashing):
+		var g = ghost_scene.instantiate()
+		g.position = self.position
+		g.rotation = self.rotation
+		g.modulate.a = 0.9
+		get_tree().root.add_child(g)
 
 func calc_speed(delta):
+	dashSpeed = playerSpeed * 4
 	if not isDashing:
 		return playerSpeed
 	var currentSpeed = dashSpeed
@@ -65,26 +83,36 @@ func calc_speed(delta):
 	return currentSpeed
 
 func start_dash():
+	remove_from_group("player")
+	$sndDash.play()
 	isDashing = true
 	dashDuration = 0.2
 	timeSinceLastDash = 0
 	
 func stop_dash():
+	add_to_group("player")
 	isDashing = false
 	dashDuration = 0.2
 
 func shoot():
-	if not canShoot:
+	if (not canShoot) || (isDashing):
 		return
 	canShoot = false
 	$bulletCoolDown.start()
-	var bullet = bullet_scene.instantiate()
-	var offset = Vector2(0, -20).rotated(self.rotation)
-	bullet.position = self.position + offset
-	bullet.rotation = self.rotation + deg_to_rad(-90)
-	get_tree().root.add_child(bullet)
+	var angle_step = 5
+	if n_bullets == 1:
+		angle_step = 0
+	var start_angle = deg_to_rad(-angle_step * (n_bullets - 1.0) / 2)
+	for i in range(n_bullets):
+		var bullet = bullet_scene.instantiate()
+		var offset = Vector2(0, -20).rotated(self.rotation)
+		bullet.position = self.position + offset
+		var rotation_adjustment = start_angle + deg_to_rad(angle_step * i)
+		bullet.rotation = self.rotation + rotation_adjustment + deg_to_rad(-90)
+		get_tree().root.add_child(bullet)
 
 func _on_bullet_cool_down_timeout():
 	canShoot = true
 
-
+func get_camera():
+	return $Camera2D
