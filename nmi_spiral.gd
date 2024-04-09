@@ -36,6 +36,14 @@ func _process(delta):
 
 func die():
 	health -= 1
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate",Color.RED,0.3)
+	tween.tween_callback(restore_color)
+func restore_color():
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate",Color.WHITE,0.1)
+
+
 	if (health <= 0):
 		speed = 0
 		remove_from_group("enemies")

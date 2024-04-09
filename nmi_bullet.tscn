@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkov1g224df16"]
+[gd_scene load_steps=6 format=3 uid="uid://dkov1g224df16"]
 
 [ext_resource type="Script" path="res://nmi_bullet.gd" id="1_mfruk"]
 [ext_resource type="Texture2D" uid="uid://d2bhcn85otma3" path="res://assets/bullets/nmi_01.png" id="2_26nhp"]
@@ -28,15 +28,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_i6hpn"]
 radius = 2.01556
 
-[sub_resource type="Gradient" id="Gradient_vp8p3"]
-offsets = PackedFloat32Array(0, 0.796296)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8xgrk"]
-gradient = SubResource("Gradient_vp8p3")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [node name="nmiBullet" type="Area2D"]
 scale = Vector2(4, 4)
 collision_layer = 32
@@ -45,7 +36,6 @@ script = ExtResource("1_mfruk")
 bulletSpeed = 200
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(4, 4, 4, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_26nhp")
 hframes = 4
@@ -59,9 +49,6 @@ libraries = {
 shape = SubResource("CircleShape2D_i6hpn")
 
 [node name="keepAlive" type="Timer" parent="."]
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-texture = SubResource("GradientTexture2D_8xgrk")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="keepAlive" to="." method="_on_keep_alive_timeout"]

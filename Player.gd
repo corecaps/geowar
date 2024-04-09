@@ -25,11 +25,18 @@ func set_shield(value):
 	if (value < shield):
 		$Camera2D.declencher_tremblement(0.2,10)
 		$sndImpact.play()
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "modulate",Color.RED,0.2)
+		tween.tween_callback(restore_color)
 	shield = min(max_shield,value)
 	shield_changed.emit(max_shield,shield)
 	if (shield <= 0):
 		$Camera2D.declencher_tremblement(2.0,30)
 		hide()
+func restore_color():
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate",Color.WHITE,0.2)
+
 func _ready():
 	set_process(true)
 	add_to_group("player")
@@ -40,7 +47,7 @@ func start(pos):
 
 
 func _process(delta):
-	$Sprite2D.frame = ($Sprite2D.frame + 1) % 5
+	$Sprite2D.frame = ($Sprite2D.frame + 1) % 4
 	if timeSinceLastDash < dashCoolDown:
 		timeSinceLastDash += delta
 	if (Input.is_action_pressed("shoot")):

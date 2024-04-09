@@ -1,42 +1,59 @@
 [gd_scene load_steps=7 format=3 uid="uid://bink2mmb7r2bh"]
 
-[ext_resource type="Texture2D" uid="uid://b3v8ufj8l4qp8" path="res://assets/powerups/01.png" id="1_662c1"]
 [ext_resource type="Script" path="res://p_up.gd" id="1_sovp7"]
+[ext_resource type="Texture2D" uid="uid://bd4c8rh4klmxa" path="res://assets/powerups/01-Sheet.png" id="2_hgi4q"]
 [ext_resource type="AudioStream" uid="uid://bnmykig8hujb4" path="res://assets/pup.wav" id="3_gqset"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cjm5s"]
 radius = 33.0151
 
-[sub_resource type="Gradient" id="Gradient_8shon"]
-offsets = PackedFloat32Array(0, 0.694444)
-colors = PackedColorArray(2, 2, 2, 1, 0, 0, 0, 1)
+[sub_resource type="Animation" id="Animation_jx460"]
+resource_name = "alive"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_onyju"]
-gradient = SubResource("Gradient_8shon")
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_huhxd"]
+_data = {
+"alive": SubResource("Animation_jx460")
+}
 
 [node name="P_Up" type="Area2D"]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_sovp7")
+speed = 120
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.3, 1.3)
-texture = ExtResource("1_662c1")
+texture = ExtResource("2_hgi4q")
+hframes = 11
+frame = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cjm5s")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-texture = SubResource("GradientTexture2D_onyju")
 
 [node name="TimeToLive" type="Timer" parent="."]
 
 [node name="sndActivate" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_gqset")
 volume_db = -10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_huhxd")
+}
+autoplay = "alive"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="TimeToLive" to="." method="_on_time_to_live_timeout"]

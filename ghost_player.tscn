@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://jafh8xpq0abq"]
 
-[ext_resource type="Texture2D" uid="uid://doyydgqaxyr18" path="res://assets/player/player_ani_mono.png" id="1_2mwx3"]
+[ext_resource type="Texture2D" uid="uid://covlb4nkq743f" path="res://assets/player/player_ani_base02.png" id="1_6hs4g"]
 [ext_resource type="Script" path="res://GhostPlayer.gd" id="2_013jy"]
 
 [node name="GhostPlayer" type="Sprite2D"]
-texture = ExtResource("1_2mwx3")
-hframes = 5
+texture = ExtResource("1_6hs4g")
+hframes = 4
 script = ExtResource("2_013jy")

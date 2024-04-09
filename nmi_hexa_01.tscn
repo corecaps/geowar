@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dk15jqw8duep1"]
+[gd_scene load_steps=10 format=3 uid="uid://dk15jqw8duep1"]
 
 [ext_resource type="Script" path="res://nmiHexa01.gd" id="1_va43n"]
-[ext_resource type="Texture2D" uid="uid://umxi3cgcb6tq" path="res://assets/nmi/hexa_ani01.png" id="2_kw8e0"]
 [ext_resource type="Texture2D" uid="uid://b5xp7isu4vgo5" path="res://assets/explosion.png" id="2_mmynb"]
 [ext_resource type="PackedScene" uid="uid://dkov1g224df16" path="res://nmi_bullet.tscn" id="2_nk4hx"]
+[ext_resource type="Texture2D" uid="uid://b72foj5idygv" path="res://assets/nmi/hexa02.png" id="3_gmjig"]
 [ext_resource type="AudioStream" uid="uid://duyjb0gwxaybm" path="res://assets/expl.wav" id="5_1rijt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y23k1"]
@@ -75,7 +75,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_kw8e0")]
+"values": [ExtResource("3_gmjig")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -87,7 +87,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1e-05),
 "update": 1,
-"values": [2]
+"values": [1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -96,10 +96,10 @@ tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1]
+"values": [0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -120,15 +120,6 @@ _data = {
 "start": SubResource("Animation_60jvo")
 }
 
-[sub_resource type="Gradient" id="Gradient_mkw0c"]
-offsets = PackedFloat32Array(0, 0.384259)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_01chg"]
-gradient = SubResource("Gradient_mkw0c")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [node name="nmiHexa01" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
@@ -136,9 +127,8 @@ script = ExtResource("1_va43n")
 bullet_scene = ExtResource("2_nk4hx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1.05, 1, 1, 1)
-texture = ExtResource("2_kw8e0")
-hframes = 2
+rotation = -1.5708
+texture = ExtResource("3_gmjig")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y23k1")
@@ -149,10 +139,6 @@ shape = SubResource("CircleShape2D_y23k1")
 libraries = {
 "": SubResource("AnimationLibrary_yy6wt")
 }
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.4
-texture = SubResource("GradientTexture2D_01chg")
 
 [node name="sndExplode" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_1rijt")

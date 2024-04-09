@@ -1,25 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpde1isc8edvo"]
+[gd_scene load_steps=10 format=3 uid="uid://dpde1isc8edvo"]
 
-[ext_resource type="Texture2D" uid="uid://km03sl1vyrtk" path="res://assets/nmi/penta.png" id="1_6kuvd"]
 [ext_resource type="Script" path="res://nmi_penta_.gd" id="1_tqfs1"]
+[ext_resource type="Texture2D" uid="uid://b5abtycvr7elx" path="res://assets/nmi/penta03.png" id="2_adxg4"]
 [ext_resource type="Texture2D" uid="uid://b5xp7isu4vgo5" path="res://assets/explosion.png" id="3_646rd"]
 [ext_resource type="AudioStream" uid="uid://duyjb0gwxaybm" path="res://assets/expl.wav" id="4_joiho"]
 
-[sub_resource type="Gradient" id="Gradient_bn1ms"]
-offsets = PackedFloat32Array(0, 0.712963)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ks3v1"]
+radius = 42.0476
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bw522"]
-gradient = SubResource("Gradient_bn1ms")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ml6mw"]
-size = Vector2(32, 32)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pgoms"]
-radius = 37.0
-height = 94.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_026xw"]
+size = Vector2(277.5, 169)
 
 [sub_resource type="Animation" id="Animation_mw8jx"]
 resource_name = "alive"
@@ -33,7 +23,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_6kuvd")]
+"values": [ExtResource("2_adxg4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -136,21 +126,18 @@ collision_mask = 2
 script = ExtResource("1_tqfs1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(2, 2, 2, 1)
-texture = ExtResource("1_6kuvd")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.5
-texture = SubResource("GradientTexture2D_bw522")
+rotation = 1.5708
+texture = ExtResource("2_adxg4")
+flip_v = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ml6mw")
+shape = SubResource("CircleShape2D_ks3v1")
 
 [node name="Vision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
-position = Vector2(0, -24)
-shape = SubResource("CapsuleShape2D_pgoms")
+position = Vector2(-67.25, 0)
+shape = SubResource("RectangleShape2D_026xw")
 
 [node name="Rayfolder" type="Node2D" parent="."]
 

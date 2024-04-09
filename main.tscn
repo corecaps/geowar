@@ -59,25 +59,23 @@ scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color(0.25098, 0.25098, 0.25098, 1)
-z_index = -1023
-motion_scale = Vector2(0.3, 0.3)
+scale = Vector2(2, 2)
+motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(960, 540)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-z_index = -1023
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = -0.5
+offset_right = 960.0
+offset_bottom = 539.5
 texture = ExtResource("5_6abao")
 stretch_mode = 1
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color(0.25098, 0.25098, 0.25098, 1)
-z_index = -1023
-motion_scale = Vector2(0.5, 0.5)
+scale = Vector2(2, 2)
 motion_mirroring = Vector2(960, 540)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
-z_index = -1023
 offset_right = 960.0
 offset_bottom = 551.0
 texture = ExtResource("6_ogjck")
@@ -85,16 +83,15 @@ stretch_mode = 1
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color(0.47451, 0.47451, 0.47451, 1)
+scale = Vector2(2, 2)
+motion_scale = Vector2(1.6, 1.6)
 motion_mirroring = Vector2(960, 540)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3"]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("7_mdjxk")
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-blend_mode = 1
-range_z_min = -1020
+stretch_mode = 1
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

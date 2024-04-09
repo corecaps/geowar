@@ -20,7 +20,7 @@ var playing = false
 var update = 100
 var since_update = 0
 func _ready():
-	var format_str = "Score :    %012d"
+	var format_str = "Score : %012d    Bullets:0     Speed:000     Shoot:00"
 	$CanvasLayer/MarginContainer/HBoxContainer/Score.text = format_str % score
 	$menu.play()
 func start():
@@ -71,8 +71,11 @@ func game_over():
 func _process(_delta):
 	if (!playing):
 		return
-	var format_str = "Score : %012d"
-	$CanvasLayer/MarginContainer/HBoxContainer/Score.text = format_str % score
+	var format_str = "Score : %012d    Bullets:%d     Speed:%d     Shoot:%d"
+	var bullets = Player.n_bullets
+	var ps = Player.playerSpeed
+	var shootspeed = int( (1.0 / Player.shootCoolDown) * 10)   
+	$CanvasLayer/MarginContainer/HBoxContainer/Score.text = format_str % [score,bullets,ps,shootspeed]
 	if Player != null:
 		place_spawn_point()
 
@@ -158,7 +161,7 @@ func _on_nmi_died(value) :
 	if score % 50 == 0:
 		call_deferred("spawn_pup")
 		hexaspeed += 1
-		spawn_radius += 1
+		spawn_radius += 10
 	since_update += value
 	if (since_update >= update):
 		update += update

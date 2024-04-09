@@ -17,10 +17,14 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=800
-window/size/viewport_height=600
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/resizable=false
 window/size/borderless=true
+
+[editor]
+
+movie_writer/movie_file="/home/corecaps/projects/geowar/demo.avi"
 
 [input]
 
@@ -80,4 +84,3 @@ shoot={
 renderer/rendering_method.mobile="forward_plus"
 renderer/rendering_method.web="forward_plus"
 environment/glow/upscale_mode.mobile=1
-viewport/hdr_2d=true

@@ -14,15 +14,7 @@ func start(p):
 func _process(delta):
 	var dirv = Player.global_position - global_position
 	global_position += dirv.normalized() * speed * delta
-	var ts = $PointLight2D.get_texture_scale()
-	if (grow) :
-		$PointLight2D.set_texture_scale(ts + 0.1) 
-	else :
-		$PointLight2D.set_texture_scale(ts - 0.1)
-	if (grow) && ts >= 1.0 :
-		grow = false
-	if (not grow) && ts <= 0.2:
-		grow = true
+
 
 func apply_rnd_pup():
 	if (!Player):

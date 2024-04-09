@@ -17,7 +17,7 @@ func _process(delta):
 	if player :
 		var dirVector = player.position -  position
 		position += dirVector.normalized() * speed * delta
-		rotation += deg_to_rad(rotspeed) * delta
+		rotation =  lerp_angle(rotation, dirVector.normalized().angle_to_point(Vector2.ZERO), 0.4)
 
 func die():
 	speed = 0
